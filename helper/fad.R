@@ -3,11 +3,13 @@ function(gamma=1, sigma=1, x0=1, A=1, curveColor=1, border=1, col='#569BBD', xli
   
   cv <- readRDS("./helper/cv.rds")
   x <- cv$wavelength
+  wv <- 1e7 / x
+  wv0 <- 1e7 / x0
   
-  v <- Voigt(x, x0[1], gamma[1], sigma[1], real = FALSE)
+  v <- Voigt(wv, wv0[1], gamma[1], sigma[1], real = FALSE)
   y1 <- A[1]*Re(v)/max(Re(v))
   
-  v <- Voigt(x, x0[2], gamma[2], sigma[2], real = FALSE)
+  v <- Voigt(wv, wv0[2], gamma[2], sigma[2], real = FALSE)
   y2 <- A[2]*Re(v)/max(Re(v))
  y <- (y1+y2) / max(y1+y2)
  palette(c("black", RColorBrewer::brewer.pal(5, "Set1")))

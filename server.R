@@ -7,6 +7,9 @@ options(repos=structure(c(CRAN="http://cran.rstudio.com")))
 if (!("shiny" %in% names(installed.packages()[,"Package"]))) {install.packages("shiny")}
 suppressMessages(library(shiny, quietly = TRUE))
 
+if (!("RcppFaddeeva" %in% names(installed.packages()[,"Package"]))) {install.packages("RcppFaddeeva")}
+suppressMessages(library(RcppFaddeeva, quietly = TRUE))
+
 if (!("openintro" %in% names(installed.packages()[,"Package"]))) {install.packages("openintro")}
 suppressMessages(library(openintro, quietly = TRUE))
 
@@ -32,9 +35,9 @@ shinyServer(function(input, output)
   
       sliderInput("gamma_1",
                   "Gamma",
-                  value = 20,
+                  value = 685,
                   min = 1,
-                  max = 100)
+                  max = 1000)
    
   })
     
@@ -43,9 +46,9 @@ shinyServer(function(input, output)
   
       sliderInput("sigma_1",
                   "Sigma",
-                  value = 20,
+                  value = 860,
                   min = 1,
-                  max = 100)
+                  max = 1000)
     
   })
   
@@ -54,7 +57,7 @@ shinyServer(function(input, output)
       
       sliderInput("A_1",
                   "Amplitude",
-                  value = 0.75,
+                  value = 0.7,
                   min = 0,
                   max = 1)
       
@@ -77,9 +80,9 @@ shinyServer(function(input, output)
       
       sliderInput("gamma_2",
                   "Gamma",
-                  value = 18,
+                  value = 20,
                   min = 1,
-                  max = 100)
+                  max = 1000)
       
     })
   
@@ -88,9 +91,9 @@ shinyServer(function(input, output)
       
       sliderInput("sigma_2",
                   "Sigma",
-                  value = 3,
+                  value = 600,
                   min = 1,
-                  max = 100)
+                  max = 1000)
       
     })
   

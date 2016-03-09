@@ -17,117 +17,83 @@ suppressMessages(library(openintro, quietly = TRUE))
 shinyServer(function(input, output)
 { 
   
-  ## first peak
   
-  output$x0_1 = renderUI(
-    {
-      
-      sliderInput("x0_1",
-                  "x0",
-                  value = 543,
-                  min = 0,
-                  max = 1000)
-      
-    })
-  
-  output$gamma_1 = renderUI(
-  {
-  
-      sliderInput("gamma_1",
-                  "Gamma",
-                  value = 685,
-                  min = 1,
-                  max = 1000)
-   
-  })
-    
-  output$sigma_1 = renderUI(
-  {
-  
-      sliderInput("sigma_1",
+  output$sigma <- renderUI({
+    pvars <- seq_len(input$number)
+    lapply(seq_along(pvars), function(i) {
+      sliderInput(inputId = paste0("sigma_", pvars[i]),
                   "Sigma",
-                  value = 860,
-                  min = 1,
-                  max = 1000)
+                  value = 200,
+                  min = 0,
+                  max = 2000)
+    })
     
   })
   
-  output$A_1 = renderUI(
-    {
-      
-      sliderInput("A_1",
-                  "Amplitude",
-                  value = 0.7,
+  output$gamma <- renderUI({
+    pvars <- seq_len(input$number)
+    lapply(seq_along(pvars), function(i) {
+      sliderInput(inputId = paste0("gamma_", pvars[i]),
+                  "Gamma",
+                  value = 200,
                   min = 0,
-                  max = 1)
-      
+                  max = 2000)
     })
-  ## second peak
+    
+  })
   
-  output$x0_2 = renderUI(
-    {
-      
-      sliderInput("x0_2",
+  output$x0 <- renderUI({
+    pvars <- seq_len(input$number)
+    lapply(seq_along(pvars), function(i) {
+      sliderInput(inputId = paste0("x0_", pvars[i]),
                   "x0",
                   value = 590,
-                  min = 0,
-                  max = 1000)
-      
+                  min = 400,
+                  max = 700)
     })
+    
+  })
   
-  output$gamma_2 = renderUI(
-    {
-      
-      sliderInput("gamma_2",
-                  "Gamma",
-                  value = 20,
-                  min = 1,
-                  max = 1000)
-      
-    })
   
-  output$sigma_2 = renderUI(
-    {
+  output$amplitude <- renderUI({
+    pvars <- seq_len(input$number)
+    lapply(seq_along(pvars), function(i) {
       
-      sliderInput("sigma_2",
-                  "Sigma",
-                  value = 600,
-                  min = 1,
-                  max = 1000)
-      
-    })
-  
-  output$A_2 = renderUI(
-    {
-      
-      sliderInput("A_2",
+      sliderInput(inputId = paste0("A_", pvars[i]),
                   "Amplitude",
                   value = 1,
                   min = 0,
                   max = 1)
-      
     })
+    
+  })
   
   ############
   # Plotting #
   ############
   
   output$plot = renderPlot(
-  { 
+    { 
+      n <- seq_len(input$number)
+      sigmas <- sapply(paste0("sigma_", n), function(g) input[[g]])
+      gammas <- sapply(paste0("gamma_", n), function(g) input[[g]])
+      x0s <- sapply(paste0("x0_", n), function(g) input[[g]])
+      As <- sapply(paste0("A_", n), function(g) input[[g]])
 
-   fad(gamma=c(input$gamma_1,input$gamma_2),
-       sigma=c(input$sigma_1,input$sigma_2),
-       x0=c(input$x0_1,input$x0_2), A=c(input$A_1, input$A_2))
-   
+      fad(gamma=gammas,
+          sigma=sigmas,
+          x0=x0s,
+          A=As)
+
+      
+    })
   
-  })
-
   ################
   # Calculations #
   ################
-
+  
   output$area = renderText(
-  {
-
-  })
+    {
+      
+    })
 })

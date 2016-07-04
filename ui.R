@@ -1,5 +1,5 @@
 library(shiny)
-
+library(RcppFaddeeva)
 shinyUI(fluidPage(
   
   fluidRow(  plotOutput("plot", width = "100%", height = "400px"),

@@ -1,0 +1,12 @@
+name: fadr
+title: fadr
+username:
+account: baptiste
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 220537
+bundleId: 1004494
+url: https://baptiste.shinyapps.io/fadr/
+when: 1506750867.12579
+asMultiple: FALSE
+asStatic: FALSE

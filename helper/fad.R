@@ -14,7 +14,7 @@ fad <- function(gamma=1, sigma=1, x0=1, A=1, dat){
   d <- do.call(cbind, all)
   ym <- rowSums(d) 
   
-  data.frame(wavelength = x, y= dat[,2]/max(dat[,2]), model = ym/max(ym), d)
+  data.frame(wavelength = x, data= dat[,2]/max(dat[,2]), model = ym/max(ym), d)
 }
 
 plot_fad <- function(d, xlim=NULL){
@@ -22,16 +22,13 @@ plot_fad <- function(d, xlim=NULL){
   lty <- c(rep(1, ncol(d)), 2, 1)
   col <- c(seq(1, ncol(d))+2, 1, 2)
   col2 <- c(1,2)
-  par(mfrow=c(1,2), mar=c(4,2,1,2))
-  matplot(d[,1], d[,-1], 
-          lty=lty, col=col,
-          t="l", xlab="wavelength /nm", ylab="", xlim=xlim)
-  title(main="Individual components")
-  
-  matplot(d[,1], d[,2:3], 
-          lty=2:1, col=col2, t="l", xlab="wavelength /nm", ylab="")
-  title(main="Sum of multiple Voigt profiles")
-  
+  # par(mfrow=c(1,2), mar=c(4,2,1,2))
+  # matplot(d[,1], d[,-1], 
+  #         lty=lty, col=col,
+  #         t="l", xlab="wavelength /nm", ylab="", xlim=xlim)
+  # title(main="Individual components")
+  # 
+
 }
 
 model <- function(p, d){

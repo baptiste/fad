@@ -1,9 +1,14 @@
 library(shiny)
 library(RcppFaddeeva)
+library(plotly)
+library(tidyr)
+library(magrittr)
+
+
 shinyUI(fluidPage(
   
-  fluidRow(column(6, plotlyOutput("Plot1",  width = "100%", height = "300px")),
-           column(6, plotlyOutput("Plot2",  width = "100%", height = "300px")),
+  fluidRow(column(6, plotlyOutput("Plot1",  width = "95%", height = "300px")),
+           column(6, plotlyOutput("Plot2",  width = "95%", height = "300px")),
              
              hr(),
              

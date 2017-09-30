@@ -5,8 +5,8 @@ account: baptiste
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 220537
-bundleId: 1004494
+bundleId: 1005087
 url: https://baptiste.shinyapps.io/fadr/
-when: 1506750867.12579
+when: 1506809276.97914
 asMultiple: FALSE
 asStatic: FALSE

@@ -130,31 +130,8 @@ shinyServer(function(input, output)
       add_lines(name = ~"data")%>%
       add_lines(y = ~model, name = ~"model")
   })
-  # 
-  # output$plot = renderPlot(
-  #   { 
-  #     
-  #     inFile <- input$file1
-  #     
-  #     if (is.null(inFile)) {
-  #       d <- readRDS("./helper/cv.rds")
-  #       } else {
-  #       d <- read.csv(inFile$datapath)
-  #     }
-  #              
-  #              
-  #     n <- seq_len(input$number)
-  #     sigmas <- sapply(paste0("sigma_", n), function(g) input[[g]])
-  #     gammas <- sapply(paste0("gamma_", n), function(g) input[[g]])
-  #     x0s <- sapply(paste0("x0_", n), function(g) input[[g]])
-  #     As <- sapply(paste0("A_", n), function(g) input[[g]])
-  # 
-  #     d <- fad(gamma=gammas,
-  #         sigma=sigmas,
-  #         x0=x0s,
-  #         A=As, dat=d)
-  #     plot_fad(d, xlim= input$xlim)
-  # 
+
+  
   #     if(input$fit){
   #       p0 <- c(gammas, sigmas, x0s, As)
   #       pf <- optim(p0, cost, d=d)

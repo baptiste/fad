@@ -11,25 +11,13 @@ fad <- function(gamma=1, sigma=1, x0=1, A=1, dat){
   }
   
   all <- mapply(one, g=gamma, s=sigma, x0=x0, A=A, SIMPLIFY = FALSE)
-  d <- do.call(cbind, all)
+  d <- data.frame(do.call(cbind, all))
+  names(d) <- paste0("curve", seq_along(gamma))
   ym <- rowSums(d) 
-  
   data.frame(wavelength = x, data= dat[,2]/max(dat[,2]), model = ym/max(ym), d)
 }
 
-plot_fad <- function(d, xlim=NULL){
-  palette(c("black", RColorBrewer::brewer.pal(5, "Set1")))
-  lty <- c(rep(1, ncol(d)), 2, 1)
-  col <- c(seq(1, ncol(d))+2, 1, 2)
-  col2 <- c(1,2)
-  # par(mfrow=c(1,2), mar=c(4,2,1,2))
-  # matplot(d[,1], d[,-1], 
-  #         lty=lty, col=col,
-  #         t="l", xlab="wavelength /nm", ylab="", xlim=xlim)
-  # title(main="Individual components")
-  # 
 
-}
 
 model <- function(p, d){
   pm <- matrix(p, nrow=4)

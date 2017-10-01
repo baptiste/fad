@@ -5,6 +5,8 @@ library(tidyr)
 library(magrittr)
 
 
+# source('./helper/fad.R')
+
 shinyUI(fluidPage(
   
   fluidRow(column(6, plotlyOutput("Plot1",  width = "95%", height = "300px")),

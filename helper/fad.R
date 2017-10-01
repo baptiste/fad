@@ -1,6 +1,8 @@
+ym <- 1
+v <- 1
 
 
-fad <- function(gamma=1, sigma=1, x0=1, A=1, dat){
+fad <- function(gamma=1, sigma=1, x0=1, A=1, dat=readRDS("cv.rds")){
   
   x <- dat[,1]
   wv <- 1e7 / x
@@ -11,10 +13,15 @@ fad <- function(gamma=1, sigma=1, x0=1, A=1, dat){
   }
   
   all <- mapply(one, g=gamma, s=sigma, x0=x0, A=A, SIMPLIFY = FALSE)
+  
+  print("all")
+  print(str(all))
   d <- data.frame(do.call(cbind, all))
   names(d) <- paste0("curve", seq_along(gamma))
   ym <- rowSums(d) 
-  data.frame(wavelength = x, data= dat[,2]/max(dat[,2]), model = ym/max(ym), d)
+  data.frame(wavelength = x, 
+             data= dat[,2]/max(dat[,2]),
+             model = ym/max(ym), d)
 }
 
 
